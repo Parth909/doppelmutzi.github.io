@@ -10,6 +10,6 @@ Hey, I'm a frontend developer from Germany. I have been developing CSS for a ver
 
 * [Twitter](https://twitter.com/doppelmutzi)
 * [Github](https://github.com/doppelmutzi)
-* [Bloging @ LogRocket](https://blog.logrocket.com/author/sebastianweber/)
+* [Blogging @ LogRocket](https://blog.logrocket.com/author/sebastianweber/)
 * [DEV](https://dev.to/doppelmutzi)
 * [Medium](https://medium.com/@doppelmutzi)
