@@ -4,13 +4,14 @@ title: About
 permalink: /about/
 ---
 
-Hey, I'm a frontend developer from Germany. I have been developing CSS for a very long time. Recently, I have been started to investigate and learn more about the JavaScript world. I like especially Vue.js and React.
+Hey, I'm a frontend developer from Germany. I have been developing CSS for a very long time. For some time, I have been investigating and learn more about the JavaScript world. I like especially Vue.js and React. Recently, I am learning backend development with Java.
 
-### Some Links
+### Some Links about me
 
-* [Twitter @doppelmutzi](https://twitter.com/doppelmutzi)
-* [Medium @doppelmutzi](https://medium.com/@doppelmutzi)
-* [Diigo](https://www.diigo.com/user/doppelmutzi)
+* [Twitter](https://twitter.com/doppelmutzi)
+* [Bloging @ LogRocket](https://blog.logrocket.com/author/sebastianweber/)
+* [DEV](https://dev.to/doppelmutzi)
+* [Medium](https://medium.com/@doppelmutzi)
 
 ### Contact me
 
