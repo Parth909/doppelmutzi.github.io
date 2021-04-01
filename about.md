@@ -12,7 +12,3 @@ Hey, I'm a frontend developer from Germany. I have been developing CSS for a ver
 * [Bloging @ LogRocket](https://blog.logrocket.com/author/sebastianweber/)
 * [DEV](https://dev.to/doppelmutzi)
 * [Medium](https://medium.com/@doppelmutzi)
-
-### Contact me
-
-[sebastian.weber80@gmail.com](mailto:sebastian.weber80@gmail.com)
