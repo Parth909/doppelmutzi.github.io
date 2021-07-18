@@ -38,6 +38,14 @@
         "titleBar.activeBackground": "#a92f95"
       },
       "vetur.format.enable": false,
-      "editor.formatOnSave": false
+    "editor.formatOnSave": false,
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ]
 }
 
