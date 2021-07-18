@@ -125,7 +125,7 @@ objList.add(""); // works
 wildcardList.add("");// compile-time error
 ```
 
-You cannot assign a value to a list of _wildcard type_. But you can use leverage it for type-save checks. Consider the following code, where a `Stats` class with a _bounded type_ (`T extends Number`) is defined to calculate the average of numeric values.
+You cannot assign a value to a list of _wildcard type_. But you can leverage it for type-save checks. Consider the following code, where a `Stats` class with a _bounded type_ (`T extends Number`) is defined to calculate the average of numeric values.
 
 ```java
 class Stats<T extends Number> {
