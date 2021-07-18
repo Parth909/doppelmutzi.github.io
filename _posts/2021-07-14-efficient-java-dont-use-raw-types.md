@@ -162,6 +162,6 @@ public static void main(String[] args) {
 }
 ```
 
-The method `sameAverage` makes use of a _wildcard type_. You cannot pass anything into the method other than a numeric value (i.e., a sub-class of `Number`). You have to understand that the wildcard does not affect what type of `Stats` objects can be created or what actual type can be passed to the `same Average` method. The class declaration (`T extends Number`) does this.
+The method `sameAverage` makes use of a _wildcard type_. You cannot pass anything into the method other than a numeric value (i.e., a sub-class of `Number`). You have to understand that the wildcard does not affect what type of `Stats` objects can be created or what actual type can be passed to the `sameAverage` method. The class declaration (`T extends Number`) does this.
 
 A key take-away of this article is to never use raw types and instead use the generic type system. Then, the compiler has the possibilities to find wrong type assignments already at development time.
