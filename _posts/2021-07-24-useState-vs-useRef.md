@@ -1,7 +1,7 @@
 ---
 layout: post
 title: useState vs. useRef - Similarities, differences, and use cases
-slug: renovate
+slug: useState-vs-useRef
 date: 2021-07-24
 categories: React
 canonical_url: https://blog.logrocket.com/usestate-vs-useref/
