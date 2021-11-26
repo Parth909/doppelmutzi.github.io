@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Improve custom Hook debugging with `useDebugValue`
+title: Improve custom Hook debugging with useDebugValue
 slug: useDebugValue
 date: 2021-11-26
 categories: React
@@ -27,25 +27,25 @@ The next screenshot shows the **Components** tab of the React DevTools Chrome ex
 Let's look at how we can make use of the `useDebugValue` Hook. Consider this rather simplified custom fetch Hook. 
 
 ```js
-    import { useEffect, useState } from "react";
-    
-    export const useFetch = (url) => {
-      const [response, setResponse] = useState([]);
-      const [error, setError] = useState(null);
-      useEffect(() => {
-        async function fetchFiles() {
-          try {
-            const response = await fetch(url);
-            const json = await response.json();
-            setResponse(json);
-          } catch (error) {
-            setError(error);
-          }
+import { useEffect, useState } from "react";
+
+export const useFetch = (url) => {
+    const [response, setResponse] = useState([]);
+    const [error, setError] = useState(null);
+    useEffect(() => {
+    async function fetchFiles() {
+        try {
+        const response = await fetch(url);
+        const json = await response.json();
+        setResponse(json);
+        } catch (error) {
+        setError(error);
         }
-        fetchFiles();
-      }, [setError, setResponse, url]);
-      return [response, error];
-    };
+    }
+    fetchFiles();
+    }, [setError, setResponse, url]);
+    return [response, error];
+};
 ```
 
 This is how data about the Hook is displayed.
@@ -59,39 +59,39 @@ Debug information is limited to only displaying information about the other inbu
 With the help of the inbuilt `useDebugValue` Hook, we can improve this situation by adding additional entries to the React DevTools output for our custom Hook. 
 
 ```js
-    import { useEffect, useDebugValue, useState } from "react";
-    
-    export const useFetch = (url) => {
-      useDebugValue(url);
-      const [response, setResponse] = useState([]);
-      const clown = "🤡";
-      useDebugValue(`crazy ${clown}`);
-      const [error, setError] = useState(null);
-      const [httpResponse, setHttpResponse] = useState();
-      useDebugValue(
-        httpResponse ? "status code " + httpResponse.status : "no response"
-      );
-      useDebugValue(error, (e) =>
-        e ? `fetch failed due to ${e.message}` : "fetch successful"
-      );
-      useEffect(() => {
-        async function fetchFiles() {
-          try {
-            const response = await fetch(url);
-            setHttpResponse(response);
-            const json = await response.json();
-            setResponse(json);
-          } catch (error) {
-            setError(error);
-          }
+import { useEffect, useDebugValue, useState } from "react";
+
+export const useFetch = (url) => {
+    useDebugValue(url);
+    const [response, setResponse] = useState([]);
+    const clown = "🤡";
+    useDebugValue(`crazy ${clown}`);
+    const [error, setError] = useState(null);
+    const [httpResponse, setHttpResponse] = useState();
+    useDebugValue(
+    httpResponse ? "status code " + httpResponse.status : "no response"
+    );
+    useDebugValue(error, (e) =>
+    e ? `fetch failed due to ${e.message}` : "fetch successful"
+    );
+    useEffect(() => {
+    async function fetchFiles() {
+        try {
+        const response = await fetch(url);
+        setHttpResponse(response);
+        const json = await response.json();
+        setResponse(json);
+        } catch (error) {
+        setError(error);
         }
-        fetchFiles();
-      }, [setError, setResponse, url]);
-      useDebugValue(response, (mp3s) =>
-        mp3s.length > 0 ? mp3s.map((mp3) => mp3.label) : "no mp3s loaded"
-      );
-      return [response, error];
     }
+    fetchFiles();
+    }, [setError, setResponse, url]);
+    useDebugValue(response, (mp3s) =>
+    mp3s.length > 0 ? mp3s.map((mp3) => mp3.label) : "no mp3s loaded"
+    );
+    return [response, error];
+}
 ```
 
 The next screenshot shows what the output looks like in the event of a network error.
@@ -115,10 +115,10 @@ That's why I came up with an additional state variable, `httpResponse`, in the e
 According to the [official documentation](https://reactjs.org/docs/hooks-reference.html#defer-formatting-debug-values), `useDebugValue` can only be used in the context of a custom Hook. If you put a Hook call on the top level of a React functional component, no log output will occur in React DevTools. 
 
 ```js
-    const AwesomeComponent = () => {
-      useDebugValue("hey there"); // this does not work
-      return <div>what's up?</div>;
-    };
+const AwesomeComponent = () => {
+    useDebugValue("hey there"); // this does not work
+    return <div>what's up?</div>;
+};
 ```
 
 ## Improving the React DevTools output for `useState` debugging
@@ -140,41 +140,41 @@ It’s worth noting here that using multiple "atomic" state variables is the pre
 Let's see how we can utilize `useDebugState` to our advantage in order to fix this issue. First, we need to create another custom Hook.
 
 ```js
-    // useComponentState.js
-    import { useState, useDebugValue } from "react";
-    
-    export function useComponentState(initialValue, name) {
-      const [value, setValue] = useState(initialValue);
-      useDebugValue(`${name}: ${value}`);
-      return [value, setValue];
-    }
+// useComponentState.js
+import { useState, useDebugValue } from "react";
+
+export function useComponentState(initialValue, name) {
+    const [value, setValue] = useState(initialValue);
+    useDebugValue(`${name}: ${value}`);
+    return [value, setValue];
+}
 ```
 
 Let's replace the `useState` calls in our `useFetch` Hook.
 
 ```js
-    import { useEffect, useDebugValue } from "react";
-    
-    import { useComponentState } from "./useComponentState";
-    const useFetch = (url) => {
-      useDebugValue(url, (url) => `url: ${url}`);
-      const [response, setResponse] = useComponentState([], "fetched mp3s");
-      const [error, setError] = useComponentState(null, "fetch error");
-      useEffect(() => {
-        async function fetchFiles() {
-          try {
-            const response = await fetch(url);
-            const json = await response.json();
-            setResponse(json);
-          } catch (error) {
-            setError(error);
-          }
+import { useEffect, useDebugValue } from "react";
+
+import { useComponentState } from "./useComponentState";
+const useFetch = (url) => {
+    useDebugValue(url, (url) => `url: ${url}`);
+    const [response, setResponse] = useComponentState([], "fetched mp3s");
+    const [error, setError] = useComponentState(null, "fetch error");
+    useEffect(() => {
+    async function fetchFiles() {
+        try {
+        const response = await fetch(url);
+        const json = await response.json();
+        setResponse(json);
+        } catch (error) {
+        setError(error);
         }
-        fetchFiles();
-      }, [setError, setResponse, url]);
-      useDebugValue(response, (mp3s) => mp3s.map((mp3) => mp3.label));
-      return [response, error];
-    };
+    }
+    fetchFiles();
+    }, [setError, setResponse, url]);
+    useDebugValue(response, (mp3s) => mp3s.map((mp3) => mp3.label));
+    return [response, error];
+};
 ```
 
 Now it looks like this. It's easier to figure out where your state variables are displayed.
