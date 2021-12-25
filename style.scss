@@ -23,6 +23,7 @@ html {
 body {
 	background: $white;
   font: 18px/1.4 $fontFamilyBody;
+  font-weight:400;
   color: $darkGray;
 }
 
@@ -198,7 +199,7 @@ img {
   color: $darkGray;
   cursor: pointer;
   font-family: $fontFamily;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 28px;
   letter-spacing: 1px;
 }
@@ -230,7 +231,7 @@ nav {
     margin-left: 20px;
     color: $darkGray;
     text-align: right;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 1px;
 
     @include mobile {
